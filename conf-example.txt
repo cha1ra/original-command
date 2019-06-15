@@ -1,0 +1,8 @@
+##################################
+# 定数の設定
+##################################
+
+PROGLEARN_DIRECTORY="/hoge/fuga"
+
+# use `code` if you use VSCode
+CODE_EDITOR="pstorm"

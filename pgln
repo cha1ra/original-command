@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+##################################
+# 初期設定
+##################################
+
+# 参考：https://qiita.com/magicant/items/f3554274ee500bddaca8
+set -Ceu
+
+# 設定ファイルの読み込み
+. $HOME/my-command/conf.txt
+
+
+##################################
+# 関数置き場
+##################################
+
+function open_proglearn_directory () {
+  echo "[Info] Please choose the directory..."
+  # 配列の中身を全て取り出すには ${HOGE[@]}
+  DIR_NAME=($(ls $PROGLEARN_DIRECTORY))
+  select VAR in ${DIR_NAME[@]}
+  do
+    echo $VAR
+    echo "Wait to open $PROGLEARN_DIRECTORY/$VAR in Code Editor."
+    echo "$CODE_EDITOR $PROGLEARN_DIRECTORY/$VAR"
+    $CODE_EDITOR $PROGLEARN_DIRECTORY/$VAR
+    break
+  done
+}
+
+##################################
+# コードの本体
+##################################
+
+if [ $# == 1 ]; then
+  case "$1" in
+    "open") open_proglearn_directory ;;
+  esac
+else
+  echo -e "[Warning]Please set command\npgln open"
+fi
+
+# exec /bin/zsh
