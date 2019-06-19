@@ -11,6 +11,8 @@ set -Ceu
 # 設定ファイルの読み込み
 . $HOME/my-command/conf.txt
 
+COMMAND_NAME="dk"
+
 
 ##################################
 # 関数置き場
@@ -34,9 +36,13 @@ function open_proglearn_directory () {
 # コードの本体
 ##################################
 
-if [ $# == 1 ]; then
+if [ $# -ge 1 ]; then
   case "$1" in
-    "open") open_proglearn_directory ;;
+    "open" | "o") open_proglearn_directory ;;
+    "search" | "s" )
+      cd `dirname $0`
+      node ./_src/google-search/search.js ${@:2}
+      ;;
   esac
 else
   echo -e "[Warning]Please set command\npgln open"
