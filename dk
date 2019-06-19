@@ -9,7 +9,7 @@
 set -Ceu
 
 # 設定ファイルの読み込み
-. $HOME/my-command/conf.txt
+. `dirname $0`/conf.txt
 
 COMMAND_NAME="dk"
 
