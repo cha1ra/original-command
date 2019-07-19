@@ -35,7 +35,7 @@ function open_proglearn_directory () {
 function exec_project () {
   echo "[Info] Please choose projects you want to execute..."
   EXEC_DIRECTORY=`dirname $0`/exec
-  PROJECT_NAME=($(ls $EXEC_DIRECTORY))
+  PROJECT_NAME=($(ls -F $EXEC_DIRECTORY | grep -v /))
   select VAR in ${PROJECT_NAME[@]}
   do
     echo $VAR
