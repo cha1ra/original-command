@@ -32,6 +32,19 @@ function open_proglearn_directory () {
   done
 }
 
+function exec_project () {
+  echo "[Info] Please choose projects you want to execute..."
+  EXEC_DIRECTORY=`dirname $0`/exec
+  PROJECT_NAME=($(ls $EXEC_DIRECTORY))
+  select VAR in ${PROJECT_NAME[@]}
+  do
+    echo $VAR
+    cd `dirname $0`/exec
+    eval `cat $VAR`
+    break
+  done
+}
+
 ##################################
 # コードの本体
 ##################################
@@ -43,6 +56,9 @@ if [ $# -ge 1 ]; then
       cd `dirname $0`
       node ./_src/google-search/search.js ${@:2}
       ;;
+    "exec" | "e") exec_project ;;
+    "stop" | "s") stop_project ;;
+    "where" | "w") echo `dirname $0`;;
   esac
 else
   echo -e "[Warning]Please set command\npgln open"

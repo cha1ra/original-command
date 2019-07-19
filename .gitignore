@@ -1,2 +1,5 @@
 conf.txt
 .idea/
+exec/*
+!readme.md
+.DS_Store
